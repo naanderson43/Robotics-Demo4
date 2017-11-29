@@ -106,6 +106,7 @@ void loop(){
     if(c == 13){
       inStr[i] = '\0';
       
+      // Commands used in MatLAB program
       if(!strcmp(inStr, "CO")){clearOuts();}
       if(!strcmp(inStr, "LS")){LiftStop();}
       if(!strcmp(inStr, "RS")){RotateStop();}
@@ -113,6 +114,8 @@ void loop(){
       if(!strcmp(inStr, "DN")){CamDown();}
       if(!strcmp(inStr, "LT")){CamLeft();}
       if(!strcmp(inStr, "RT")){CamRight();}
+      
+      // Joint control cammands used for testing and PWM calibration
       if(!strcmp(inStr, "SR")){Shoulder(RIGHT, 95);}
       if(!strcmp(inStr, "SL")){Shoulder(LEFT, 95);}
       if(!strcmp(inStr, "SF")){Shoulder(FWD,45);}
