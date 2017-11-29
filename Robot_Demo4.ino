@@ -49,6 +49,8 @@ void CamUp(void);
 void CamDown(void);
 void CamLeft(void);
 void CamRight(void);
+void LiftStop(void);
+void RotateStop(void);
 
 
 //-------------------------------------------------------------------------------
@@ -105,12 +107,14 @@ void loop(){
       inStr[i] = '\0';
       
       if(!strcmp(inStr, "CO")){clearOuts();}
+      if(!strcmp(inStr, "LS")){LiftStop();}
+      if(!strcmp(inStr, "RS")){RotateStop();}
       if(!strcmp(inStr, "UP")){CamUp();}
       if(!strcmp(inStr, "DN")){CamDown();}
       if(!strcmp(inStr, "LT")){CamLeft();}
       if(!strcmp(inStr, "RT")){CamRight();}
-      if(!strcmp(inStr, "SR")){Shoulder(RIGHT, 155);}
-      if(!strcmp(inStr, "SL")){Shoulder(LEFT, 155);}
+      if(!strcmp(inStr, "SR")){Shoulder(RIGHT, 95);}
+      if(!strcmp(inStr, "SL")){Shoulder(LEFT, 95);}
       if(!strcmp(inStr, "SF")){Shoulder(FWD,45);}
       if(!strcmp(inStr, "SB")){Shoulder(BCK, 50);}
       if(!strcmp(inStr, "EU")){Elbow(UP, 135);}
@@ -235,7 +239,17 @@ void CamUp(void){
 //-------------------------------------------------------------------------------
 void CamDown(void){
   Wrist(UP, 100);
-  Elbow(DOWN, 100);
+  Elbow(DOWN, 110);
+}
+
+//-------------------------------------------------------------------------------
+// LiftStop()
+//
+// Stops camera up/down movement
+//-------------------------------------------------------------------------------
+void LiftStop(void){
+  digitalWrite(enWrist, LOW);
+  digitalWrite(enElbow, LOW);
 }
 
 //-------------------------------------------------------------------------------
@@ -244,7 +258,7 @@ void CamDown(void){
 // Rotates camera left
 //-------------------------------------------------------------------------------
 void CamLeft(void){
-  Shoulder(LEFT, 128);
+  Shoulder(LEFT, 100);
 }
 
 //-------------------------------------------------------------------------------
@@ -253,7 +267,16 @@ void CamLeft(void){
 // Rotates camera right
 //-------------------------------------------------------------------------------
 void CamRight(void){
-  Shoulder(RIGHT, 128);
+  Shoulder(RIGHT, 100);
+}
+
+//-------------------------------------------------------------------------------
+// RotateStop()
+//
+// Stops camera left/right movement
+//-------------------------------------------------------------------------------
+void RotateStop(void){
+  digitalWrite(enShoulderRot, LOW);
 }
 
 //-------------------------------------------------------------------------------
